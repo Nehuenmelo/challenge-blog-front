@@ -1,9 +1,10 @@
 import React from 'react'
 import Axios from 'axios'
+import { deletePost } from '../../services/deletePost'
 
 const DeleteButton = id => {
 
-    const deletePost = async (id) => {
+    /* const deletePost = async (id) => {
 
         await Axios.delete(`https://jsonplaceholder.typicode.com/posts/${id}`)
             .then(res => {
@@ -13,7 +14,8 @@ const DeleteButton = id => {
                 console.log(err)
             })
 
-    }
+    } */
+
 
     return (
         <button 
