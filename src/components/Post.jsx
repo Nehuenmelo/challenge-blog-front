@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { useLocation, useHistory } from 'react-router-dom'
-import { getPost } from '../services/getPost'
+import getPost from '../services/getPost'
 
 const Post = () => {
 
@@ -11,20 +11,19 @@ const Post = () => {
     const currentPath = location.pathname;
     var id = currentPath.substr(9);
     
-    const [Title, setTitle] = useState('')
-    const [Body, setBody] = useState('')
-
-    var PostX = {
-        Title: '',
-        Body: ''
-    }
+    const [title, setTitle] = useState('dad')
+    const [body, setBody] = useState('')
     
     useEffect(() => {
 
-        PostX = getPost(id)
-        console.log(PostX.Title + "  postx")
-        setTitle(PostX.Title)
-        setBody(PostX.Body)
+        getPost(id).then(postX => {
+            setTitle(postX.title)
+            setBody(postX.body)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+        
 
     }, [])
 
@@ -37,8 +36,8 @@ const Post = () => {
     return (
         <Fragment>
             
-            <h2> {Title} </h2>
-            <p>{Body}</p>
+            <h2> {title} </h2>
+            <p>{body}</p>
 
             <button onClick={goHome} className="btn btn-dark float-right">Volver</button>
            

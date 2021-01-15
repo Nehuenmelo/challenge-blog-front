@@ -1,5 +1,5 @@
 import React  from 'react'
-import { useHistory, useState } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 /* import   showDetail   from '../../services/useShowDetail'; */
 
 

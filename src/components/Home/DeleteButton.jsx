@@ -1,5 +1,4 @@
 import React from 'react'
-import Axios from 'axios'
 import { deletePost } from '../../services/deletePost'
 
 const DeleteButton = id => {

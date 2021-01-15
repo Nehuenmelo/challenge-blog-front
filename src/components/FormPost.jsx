@@ -3,7 +3,7 @@ import Axios from 'axios'
 
 const FormPost = () => {
 
-    const [ModoEdicion, setModoEdicion] = useState(false)
+    
     const [Title, setTitle] = useState('')
     const [Body, setBody] = useState('')
 
