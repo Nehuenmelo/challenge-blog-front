@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import Axios from 'axios'
 import { useLocation, useHistory } from 'react-router-dom'
+import { getPost } from '../services/getPost'
 
 const Post = () => {
 
@@ -14,39 +14,21 @@ const Post = () => {
     const [Title, setTitle] = useState('')
     const [Body, setBody] = useState('')
 
-    
-
+    var PostX = {
+        Title: '',
+        Body: ''
+    }
     
     useEffect(() => {
 
-        const getPost = async () => {
-            console.log(id)
-
-            try {
-                Axios.get(`https://jsonplaceholder.typicode.com/posts/${id}`)
-                    .then((res) => {
-                        setTitle(res.data.title)
-                        setBody(res.data.body)
-
-                        console.log(res.data);
-                    })
-                    .catch(err => {
-                        setTitle("No existe el post")
-                        console.log(err)
-                    })
-            }
-            catch(err) {
-                console.log(err)
-            }
-        }
-
-        getPost()
+        PostX = getPost(id)
+        console.log(PostX.Title + "  postx")
+        setTitle(PostX.Title)
+        setBody(PostX.Body)
 
     }, [])
 
-    const goBack = () => {
-
-        
+    const goHome = () => {
 
         history.push("/");
     }
@@ -58,7 +40,7 @@ const Post = () => {
             <h2> {Title} </h2>
             <p>{Body}</p>
 
-            <button onClick={goBack} className="btn btn-dark float-right">Volver</button>
+            <button onClick={goHome} className="btn btn-dark float-right">Volver</button>
            
         </Fragment>
     )

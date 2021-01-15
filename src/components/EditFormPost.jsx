@@ -1,25 +1,27 @@
 import React, { useState, useEffect } from 'react'
 import Axios from 'axios'
-import { useLocation, useHistory } from 'react-router-dom'
-import { editPost } from '../services/editPost';
+import { useLocation } from 'react-router-dom'
+import { editPost } from '../services/editPost'
+import { getPost } from '../services/getPost'
 
 const EditFormPost = () => {
 
     const location = useLocation();
-    let history = useHistory();
-
-    
-
-    const [Title, setTitle] = useState('')
-    const [Body, setBody] = useState('')
-
     //corto la url y guardo el id
     const currentPath = location.pathname;
     var id = currentPath.substr(14);
 
-    useEffect(() => {
+    var PostX = {
+        Title: '',
+        Body: ''
+    }
 
-        const getPost = async () => {
+    const [Title, setTitle] = useState('')
+    const [Body, setBody] = useState('')
+
+    useEffect((id) => {
+
+        /* const getPost = async () => {
             console.log(id)
 
             try {
@@ -38,38 +40,15 @@ const EditFormPost = () => {
             catch(err) {
                 console.log(err)
             }
-        }
+        } */
 
-        getPost()
+        PostX = getPost(id)
+
+        setTitle(PostX.Title);
+        setBody(PostX.Body);
 
     }, [])
 
-    /* const editar = async (e) => {
-
-        e.preventDefault()
-    
-        if(!Title.trim() || !Body.trim()){
-            alert("Complete todos los campos")
-            return
-        } 
-
-        try {
-            Axios.put(`https://jsonplaceholder.typicode.com/posts/${id}`, {
-                id: id,
-                title: Title,
-                body: Body,
-                userId: 1
-            }).then(res => {
-                // Respuesta del servidor
-                console.log("post editado")
-            }).catch(e => {
-                console.log(e);
-            });
-        } catch (err){
-            console.log(err)
-        }
-        
-    } */
 
     return (
         <div className="my-3">

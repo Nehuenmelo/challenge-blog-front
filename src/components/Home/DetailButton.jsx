@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import { useHistory } from "react-router-dom";
+import React  from 'react'
+import { useHistory, useState } from "react-router-dom";
+/* import   showDetail   from '../../services/useShowDetail'; */
 
 
 const DetailButton = id => {
-
-    const [AskShowDetail, setAskShowDetail] = useState(false);
+    
     let history = useHistory();
 
     const showDetail = (id) => {
@@ -14,6 +14,7 @@ const DetailButton = id => {
         history.push(`/post/id=${id.item}`); //Link to FormPost Component
         
     }
+
 
     return (
         <button 
