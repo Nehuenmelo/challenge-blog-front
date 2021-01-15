@@ -8,8 +8,7 @@ export const getPost = (id) => {
         Body: 'dadad'
     }
 
-    var Title = '';
-    var Body = '';
+    
 
     
     Axios.get(`https://jsonplaceholder.typicode.com/posts/${id}`)
@@ -20,12 +19,12 @@ export const getPost = (id) => {
             console.log(PostX.Title) //guarda el titulo ok
             console.log(res.data);
 
-            return PostX
+            
         })
         .catch(err => {
             PostX.Title = "No existe el post";
             console.log(err + "Error peticion")
         })
     
-
+        return PostX
 }
