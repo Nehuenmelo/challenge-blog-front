@@ -4,25 +4,30 @@ import Axios from 'axios'
 const FormPost = () => {
 
     
-    const [Title, setTitle] = useState('')
-    const [Body, setBody] = useState('')
-
+    const [title, setTitle] = useState('')
+    const [body, setBody] = useState('')
+    const [error, setError] = useState(false)
+    
     const agregar = async (e) => {
 
         e.preventDefault()
     
-        if(!Title.trim() || !Body.trim()){
-            alert("Complete todos los campos")
-            return
+        if(!title.trim() || !body.trim()){
+
+            setError(true)
+            
+            return 
         } 
+
 
         try {
             Axios.post('https://jsonplaceholder.typicode.com/posts', {
-                title: Title,
-                body: Body
+                title: title,
+                body: body
             }).then(res => {
                 // Respuesta del servidor
                 console.log("post agregado")
+                setError(false)
             }).catch(e => {
                 console.log(e);
             });
@@ -33,22 +38,26 @@ const FormPost = () => {
     }
 
     return (
-        <div className="my-3">
+        <div className="my-5">
             <h2>Agregar Post</h2>
             <form onSubmit={agregar}>
+                {
+                    error? <h3 className="text-danger">Complete todos los campos</h3> : null
+                }
                 <label htmlFor="title" className="col-form-label-lg">Titulo</label>
                 <input 
                     type="text" 
                     className="form-control" 
                     onChange={e => setTitle(e.target.value)}
-                    value={Title}
+                    value={title}
                 />
+                
                 <label htmlFor="body" className="col-form-label-lg">Contenido</label>
                 <input 
                     type="text" 
                     className="form-control" 
                     onChange={e => setBody(e.target.value)}
-                    value={Body}
+                    value={body}
                 />
                 <input type="submit" className="btn btn-primary mt-4 float-right" value="Enviar"/>
             </form>

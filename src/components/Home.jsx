@@ -5,10 +5,11 @@ import EditButton from './Home/EditButton'
 import DetailButton from './Home/DetailButton'
 
 import getPosts from '../services/getPosts'
+import FormPost from './FormPost'
 
 const Home = () => {
 
-    const [Posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState([]);
 
     useEffect(() => {
 
@@ -25,10 +26,12 @@ const Home = () => {
 
     return (
         <div className="my-3">
-            <h2>Posts</h2>
+            
+            <FormPost />
+            <h2 className="">Posts</h2>
             <ul className="list-group">
             {
-                Posts.map(item => (
+                posts.map(item => (
                     <li className="list-group-item" key={item.id}>
                         <div className="row">
                             <div className="col-2 mt-2">

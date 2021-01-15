@@ -12,6 +12,7 @@ const EditFormPost = () => {
 
     const [title, setTitle] = useState('')
     const [body, setBody] = useState('')
+    
 
     useEffect(() => {
 
