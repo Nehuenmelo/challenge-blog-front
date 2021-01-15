@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Axios from 'axios'
 import { useLocation, useHistory } from 'react-router-dom'
+import { editPost } from '../services/editPost';
 
 const EditFormPost = () => {
 
@@ -43,7 +44,7 @@ const EditFormPost = () => {
 
     }, [])
 
-    const editar = async (e) => {
+    /* const editar = async (e) => {
 
         e.preventDefault()
     
@@ -62,18 +63,18 @@ const EditFormPost = () => {
                 // Respuesta del servidor
                 console.log("post editado")
             }).catch(e => {
-                console.log(e+"noooo");
+                console.log(e);
             });
         } catch (err){
             console.log(err)
         }
         
-    }
+    } */
 
     return (
         <div className="my-3">
             <h2>Editar Post</h2>
-            <form onSubmit={editar}>
+            <form onSubmit={e => editPost(id, Title, Body, e)}>
                 <label htmlFor="title" className="col-form-label-lg">Titulo</label>
                 <input 
                     type="text" 
